@@ -1,0 +1,89 @@
+1.doctype能够使标识与css生效。
+ 兼容模式的盒模型大致可以总结为：渲染元素的总宽度=margin-left+width+margin-right，其中，width=border-left+padding-left+width+padding-right+border-right。而标准模式下的盒模型渲染元素的宽度是：总宽度=margin-left+border-left+padding-left+width+padding-right+border-right+margin-right。高度与宽度是一样的
+2.
+行内元素：a b span img input select strong
+块级元素有:div ul ol li dl dt dd h1 h2 h3 h4…p
+空元素:<br> <hr> <img> <input> <link> <meta>
+3.
+(1)link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
+(2)页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
+(3)import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;
+4.
+html5已不是sgml的子集，主要是关于图像，位置，存储，多任务等功能。
+绘画canvas
+移除元素：（1）basefont，big，center，font, s，strike，tt，u，frame，frameset，noframes；
+兼容问题：IE8/IE7/IE6支持通过document.createElement方法产生的标签，
+可以利用这一特性让这些浏览器支持HTML5新标签
+区别：从不同的框架区别；
+5.
+语义化是，用适合的标签使敲代码佬阅读与写出让人们容易理解的代码。
+6.
+localStorage    长期存储数据，浏览器关闭后数据不丢失；
+   sessionStorage  数据在浏览器关闭后自动删除（copy下来的）
+7.
+可以使标签内的区域指向label标签for属性指代的对象的事件
+用法：在label里加上 for=" "；
+8.action,method,target,title,enctype
+怎么用，不会用。
+9.
+有tr.th.td
+tr 元素定义表格行，th 元素定义表头，td 元素定义表格单元
+10.
+由margin,border,padding,content组成
+内容（CONTENT）就是盒子里装的东西；
+
+而填充(PADDING)就是怕盒子里装的东西（贵重的）损坏而添加的泡沫或者其它抗震的辅料；
+
+边框(BORDER)就是盒子本身了；至于边界(MARGIN)则说明盒子摆放的时候的不能全部堆在一起，要留一定空隙保持通风，同时也为了方便取出。在网页设计上，内容常指文字、图片等元素，但是也可以是小盒子（DIV嵌套），与现实生活中盒子不同的是，现实生活中的东西一般不能大于盒子，否则盒子会被撑坏的，而CSS盒子具有弹性，里面的东西大过盒子本身最多把它撑大，但它不会损坏的。
+
+填充只有宽度属性，可以理解为生活中盒子每个HTML标记都可看作一个盒子；
+11.
+CSS选择符有：id选择符，类选择符，标签选择符，后代选择符，相邻选择符，子选择符，通配符选择器，属性选择器，伪类选择器
+可以继承的属性：1.border2.padding3.margin4.width5.height
+！important>id>class>tag
+优先级符合就近原则，同权重下，以最近的为准。
+载入样式，以最后载入样式为准
+！important>内联>id
+CSS3新增的伪类有:
+first-of-child，first-of-type
+12.
+div可用margin 中auto 0;0来居中
+浮动元素用positiong:relative,然后根据盒子的大小来移位。
+13.
+ block 象块类型元素一样显示。
+      none 缺省值。象行内元素类型一样显示。
+      inline-block 象行内元素一样显示，但其内容象块类型元素一样显示。
+      list-item 象块类型元素一样显示，并添加样式列表标记。
+*absolute
+            生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。
+
+      *fixed （老IE不支持）
+            生成绝对定位的元素，相对于浏览器窗口进行定位。
+
+      *relative
+            生成相对定位的元素，相对于其正常位置进行定位
+14.
+CSS3实现圆角（border-radius:8px），阴影（box-shadow:10px），
+     对文字加特效（text-shadow、），线性渐变（gradient），旋转（transform）
+     transform:rotate(9deg) scale(0.85,0.90) translate(0px,-30px) skew(-9deg,0deg);//旋转,缩放,定位,倾斜
+     增加了更多的CSS选择器  多背景 rgba
+15.
+px、em、pt
+在响应式布局下用px
+em会继承父级元素的字体大小
+16.
+.text-overflow{
+display:block;/*内联对象需加*/
+width:31em;
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}（一点也不懂）
+17.
+position 属性规定元素的定位类型。
+这个属性定义建立元素布局所用的定位机制。任何元素都可以定位，不过绝对或固定元素会生成一个块级框，而不论该元素本身是什么类型。相对定位元素会相对于它在正常流中的默认位置偏移
+float 属性定义元素在哪个方向浮动。以往这个属性总应用于图像，使文本围绕在图像周围，不过在 CSS 中，任何元素都可以浮动。浮动元素会生成一个块级框，而不论它本身是何种元素
+18.
+使用空标签清楚浮动，使用overflow属性，使用after伪对象清楚浮动。
+使用overflow最方便，因为只需要打上overflow:auto，zoom:1即可
