@@ -1,0 +1,188 @@
+HTML	
+
+
+1.Doctype作用？标准模式与兼容模式各有什么区别?
+作用是告诉浏览器 我的html使用哪个版本的html协议写的 让浏览器按照声明的协议执行
+各浏览器厂商发布了按照标准模式（遵循各厂商制定的统一标准）工作的浏览器，如IE6。但是考虑到以前建设的网站并不支持标准模式，所以各浏览器在加入标准模式的同时也保留了混杂模式（即以前那种未按照统一标准工作的模式)
+
+2.行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+内联元素(inline element)
+* a - 锚点
+* abbr - 缩写
+* acronym - 首字
+* b - 粗体(不推荐)
+* bdo - bidi override
+* big - 大字体
+* br - 换行
+* cite - 引用
+* code - 计算机代码(在引用源码的时候需要)
+* dfn - 定义字段
+* em - 强调
+* font - 字体设定(不推荐)
+* i - 斜体
+* img - 图片
+* input - 输入框
+* kbd - 定义键盘文本
+* label - 表格标签
+* q - 短引用
+* s - 中划线(不推荐)
+* samp - 定义范例计算机代码
+* select - 项目选择
+* small - 小字体文本
+* span - 常用内联容器，定义文本内区块
+* strike - 中划线
+* strong - 粗体强调
+* sub - 下标
+* sup - 上标
+* textarea - 多行文本输入框
+* tt - 电传文本
+* u - 下划线
+* var - 定义变量
+
+块元素(block element)
+* address - 地址
+* blockquote - 块引用
+* center - 举中对齐块
+* dir - 目录列表
+* div - 常用块级容易，也是css layout的主要标签
+* dl - 定义列表
+* fieldset - form控制组
+* form - 交互表单
+* h1 - 大标题
+* h2 - 副标题
+* h3 - 3级标题
+* h4 - 4级标题
+* h5 - 5级标题
+* h6 - 6级标题
+* hr - 水平分隔线
+* isindex - input prompt
+* menu - 菜单列表
+* noframes - frames可选内容，（对于不支持frame的浏览器显示此区块内容
+* noscript - ）可选脚本内容（对于不支持script的浏览器显示此内容）
+* ol - 排序表单
+* p - 段落
+* pre - 格式化文本
+* table - 表格
+* ul - 非排序列表
+
+可变元素
+可变元素为根据上下文语境决定该元素为块元素或者内联元素。
+
+* applet - java applet
+* button - 按钮
+* del - 删除文本
+* iframe - inline frame
+* ins - 插入的文本
+* map - 图片区块(map)
+* object - object对象
+* script - 客户端脚本
+
+3.页面导入样式时，使用link和@import有什么区别？
+差别1：老祖宗的差别。link属于XHTML标签，而@import完全是CSS提供的一种方式。
+
+link标签除了可以加载CSS外，还可以做很多其它的事情，比如定义RSS，定义rel连接属性等，@import就只能加载CSS了。
+
+差别2：加载顺序的差别。当一个页面被加载的时候（就是被浏览者浏览的时候），link引用的CSS会同时被加载，而@import引用的CSS会等到页面全部被下载完再被加载。所以有时候浏览@import加载CSS的页面时开始会没有样式（就是闪烁），网速慢的时候还挺明显（梦之都加载CSS的方式就是使用@import，我一边下载一边浏览梦之都网页时，就会出现上述问题）。
+
+差别3：兼容性的差别。由于@import是CSS2.1提出的所以老的浏览器不支持，@import只有在IE5以上的才能识别，而link标签无此问题。
+
+差别4：使用dom控制样式时的差别。当使用javascript控制dom去改变样式的时候，只能使用link标签，因为@import不是dom可以控制的。
+差别5：@import可以在css中再次引入其他样式表，比如可以创建一个主样式表，在主样式表中再引入其他的样式表
+
+4.html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
+* HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+
+* 绘画 canvas  
+ 用于媒介回放的 video 和 audio 元素
+ 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；
+ sessionStorage 的数据在浏览器关闭后自动删除
+
+ 语意化更好的内容元素，比如 article、footer、header、nav、section
+ 表单控件，calendar、date、time、email、url、search  
+ 新的技术webworker, websockt, Geolocation
+
+* 移除的元素
+
+纯表现的元素：basefont，big，center，font, s，strike，tt，u；
+
+对可用性产生负面影响的元素：frame，frameset，noframes；
+
+支持HTML5新标签：
+
+* IE8/IE7/IE6支持通过document.createElement方法产生的标签，
+ 可以利用这一特性让这些浏览器支持HTML5新标签，
+
+ 浏览器支持新标签后，还需要添加标签默认的样式：
+
+* 当然最好的方式是直接使用成熟的框架、使用最多的是html5shim框架
+  <!--[if lt IE 9]>
+  <script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+  <![endif]-->
+如何区分： DOCTYPE声明\新增的结构元素\功能元素
+
+5.简述一下你对HTML语义化的理解？
+1、什么是HTML语义化？
+
+<基本上都是围绕着几个主要的标签，像标题（H1~H6）、列表（li）、强调（strong em）等等>
+
+　　根据内容的结构化（内容语义化），选择合适的标签（代码语义化）便于开发者阅读和写出更优雅的代码的同时让浏览器的爬虫和机器很好地解析。
+
+2、为什么要语义化？
+
+    为了在没有CSS的情况下，页面也能呈现出很好地内容结构、代码结构:为了裸奔时好看；
+    用户体验：例如title、alt用于解释名词或解释图片信息、label标签的活用；
+    有利于SEO：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息：爬虫依赖于标签来确定上下文和各个关键字的权重；
+    方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；
+    便于团队开发和维护，语义化更具可读性，是下一步吧网页的重要动向，遵循W3C标准的团队都遵循这个标准，可以减少差异化。
+
+3、写HTML代码时应注意什么？
+
+    尽可能少的使用无语义的标签div和span；
+    在语义不明显时，既可以使用div或者p时，尽量用p, 因为p在默认情况下有上下间距，对兼容特殊终端有利；
+    不要使用纯样式标签，如：b、font、u等，改用css设置。
+    需要强调的文本，可以包含在strong或者em标签中（浏览器预设样式，能用CSS指定就不用他们），strong默认样式是加粗（不要用b），em是斜体（不用i）；
+    使用表格时，标题要用caption，表头用thead，主体部分用tbody包围，尾部用tfoot包围。表头和一般单元格要区分开，表头用th，单元格用td；
+    表单域要用fieldset标签包起来，并用legend标签说明表单的用途；
+    每个input标签对应的说明文本都需要使用label标签，并且通过为input设置id属性，在lable标签中设置for=someld来让说明文本和相对应的input关联起来。
+
+
+6.什么是HTML5：离线存储
+
+
+7.Label的作用是什么？是怎么用的？
+FOR属性 
+功能：表示Label标签要绑定的HTML元素，你点击这个标签的时候，所绑定的元素将获取焦点。 
+用法：<Label FOR="InputBox">姓名</Label><input ID="InputBox" type="text"> 
+
+ACCESSKEY属性： 
+功能：表示访问Label标签所绑定的元素的热键，当您按下热键，所绑定的元素将获取焦点。 
+用法：<Label FOR="InputBox" ACCESSKEY＝"N">姓名</Label><input ID="InputBox" type="text"> 
+
+8.Form表单有那些标签，应该怎么使用
+
+9.Table有那些标签，应该怎么使用
+
+
+10介绍一下CSS的盒子模型？（两种）
+
+
+11.CSS 选择符有哪些？哪些属性可以继承？优先级算法如何计算？ CSS3新增伪类有那些？
+
+
+12.如何居中div？如何居中一个浮动元素？
+
+
+13.列出display的值，说明他们的作用。position的值， relative和absolute定位原点是？
+
+
+
+14.CSS3有哪些新特性？
+
+15.字体的大小有那些单位，在响应式布局应该用那个单位，em字体的继承是怎么样的
+
+16.怎么让文字在一行显示不换行
+
+17.总结一下用盒子模型定位，position定位和float定位各有哪些技巧和注意事项
+
+
+18.有哪几种清除浮动的方法，你觉得哪种最简洁
