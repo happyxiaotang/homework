@@ -1,0 +1,554 @@
+1.Doctype作用？标准模式与兼容模式各有什么区别?
+
+最前面的位置，处于 <html> 标签之前。此标签可告知浏览器文档使用哪种 HTML 或 XHTML 规范。
+
+
+2.行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
+
+行内元素：a  
+abbr  
+acronym  
+b 
+bdo  
+big  
+br  
+cite - 引用
+ code - 计算机代码(在引用源码的时候需要)
+ dfn - 定义字段
+ em - 强调
+ font - 字体设定(不推荐)
+ i - 斜体
+ img - 图片
+ input - 输入框
+ kbd - 定义键盘文本
+ label - 表格标签
+ q - 短引用
+ s - 中划线(不推荐)
+ samp - 定义范例计算机代码
+ select - 项目选择
+ small - 小字体文本
+ span - 常用内联容器，定义文本内区块
+ strike - 中划线
+ strong - 粗体强
+ sub - 下标
+ sup - 上标
+ textarea - 多行文本输入框
+ tt - 电传文本
+ u - 下划线
+ var - 定义变量
+块元素(block element)
+address - 地址
+ blockquote - 块引用
+ center - 举中对齐块
+ dir - 目录列表
+ div - 常用块级容易，也是css layout的主要标签
+ dl - 定义列表
+ fieldset - form控制组
+ form - 交互表单
+ h1 - 大标题
+ h2 - 副标题
+ h3 - 3级标题
+ h4 - 4级标题
+ h5 - 5级标题
+ h6 - 6级标题
+ hr - 水平分隔线
+ isindex - input prompt
+ menu - 菜单列表
+ noframes - frames可选内容，（对于不支持frame的浏览器显示此区块内容
+ noscript - ）可选脚本内容（对于不支持script的浏览器显示此内容）
+ ol - 排序表单
+ p - 段落
+ pre - 格式化文本
+ table - 表格
+ ul - 非排序列表
+空元素：  br-换行      hr-水平分割线
+
+
+3.页面导入样式时，使用link和@import有什么区别？
+
+本质上，这两种方式都是为了加载CSS文件，但还是存在着细微的差别。
+差别1：老祖宗的差别。link属于XHTML标签，而@import完全是CSS提供的一种方式。
+link标签除了可以加载CSS外，还可以做很多其它的事情，比如定义RSS，定义rel连接属性等，@import就只能加载CSS了。
+差别2：加载顺序的差别。当一个页面被加载的时候（就是被浏览者浏览的时候），link引用的CSS会同时被加载，而@import引用的CSS
+       会等到页面全部被下载完再被加载。所以有时候浏览@import加载CSS的页面时开始会没有样式（就是闪烁），网速慢的时候还挺
+       明显（梦之都加载CSS的方式就是使用@import，我一边下载一边浏览梦之都网页时，就会出现上述问题）。
+差别3：兼容性的差别。由于@import是CSS2.1提出的所以老的浏览器不支持，@import只有在IE5以上的才能识别，而link标签无此问题。
+差别4：使用dom控制样式时的差别。当使用javascript控制dom去改变样式的时候，只能使用link标签，因为@import不是dom可以控制的。
+差别5：@import可以在css中再次引入其他样式表，比如可以创建一个主样式表，在主样式表中再引入其他的样式表，
+大致就这几种差别了，其它的都一样，从上面的分析来看，还是使用link标签比较好。
+
+
+4.html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
+
+新特性：
+accesskey    规定激活元素的快捷键。    
+class    规定元素的一个或多个类名（引用样式表中的类）。    
+contenteditable    规定元素内容是否可编辑。    
+contextmenu    规定元素的上下文菜单。上下文菜单在用户点击元素时显示。    
+data-*    用于存储页面或应用程序的私有定制数据。    
+dir    规定元素中内容的文本方向。    
+draggable    规定元素是否可拖动。    
+dropzone    规定在拖动被拖动数据时是否进行复制、移动或链接。    
+hidden    规定元素仍未或不再相关。    
+id    规定元素的唯一 id。    
+lang    规定元素内容的语言。    
+spellcheck    规定是否对元素进行拼写和语法检查。    
+style    规定元素的行内 CSS 样式。    
+tabindex    规定元素的 tab 键次序。    
+title    规定有关元素的额外信息。    
+translate    规定是否应该翻译元素内容。
+
+移除的元素：纯表现的元素：basefont，big，center，font, s，strike，tt，u；
+对可用性产生负面影响的元素：frame，frameset，noframes；
+产生混淆的元素：acronym ，applet，isindex，dir。
+
+如何处理HTML5新标签的浏览器兼容问题
+IE8/7/6支持通过document.create Element方法产生新的标签；可以利用这一特性让这些浏览器支持HTML5新标签；
+浏览器支持新标签后，还需要添加标签默认的样式：
+当然最好的方式是直接使用成熟的框架、使用最多的是html5shim框架
+<!--[if it IE 9]>
+<script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+<![endif]-->
+
+如何区分html与html5
+1.首先打开你要鉴别的网站，右击 选择：“查看网页源代码”。2.在网页源代码中寻找查看HTML5特有的标签，
+如：<!--html5--> <nav> <audio>
+
+HTML5新增标签
+
+<article> 标记定义一篇文章
+
+<aside> 标记定义页面内容部分的侧边栏<audio> 标记定义音频内容<canvas> 标记定义图片<command> 标记定义一个命令按钮
+<datalist> 标记定义一个下拉列表<details> 标记定义一个元素的详细内容<dialog> 标记定义一个对话框(会话框)<embed> 
+标记定义外部的可交互的内容或插件<figure> 标记定义一组媒体内容以及它们的标题<footer> 标记定义一个页面或一个区域
+的底部<header> 标记定义一个页面或一个区域的头部<hgroup> 标记定义文件中一个区块的相关信息<keygen> 标记定义表单里
+一个生成的键值<mark> 标记定义有标记的文本<meter> 标记定义 measurement within apredefined range<nav> 标记定义导
+航链接<output> 标记定义一些输出类型<progress> 标记定义任务的过程<rp> 标记是用在Ruby annotations 告诉那些不支持
+ Ruby元素的浏览器如何去显示<rt> 标记定义对rubyannotations的解释<ruby> 标记定义 ruby annotations.<section> 标记
+定义一个区域<source> 标记定义媒体资源<time> 标记定义一个日期/时间<video> 标记定义一个视频
+
+
+5.简述一下你对HTML语义化的理解？
+
+<基本上都是围绕着几个主要的标签，像标题（H1~H6）、列表（li）、强调（strong em）等等>
+根据内容的结构化（内容语义化），选择合适的标签（代码语义化）便于开发者阅读和写出更优雅的代码的同时让浏览器的
+爬虫和机器很好地解析。
+为什么要语义化
+为了在没有CSS的情况下，页面也能呈现出很好地内容结构、代码结构:为了裸奔时好看；
+用户体验：例如title、alt用于解释名词或解释图片信息、label标签的活用；
+有利于SEO：和搜索引擎建立良好沟通，有助于爬虫抓取更多的有效信息：爬虫依赖于标签来确定上下文和各个关键字的权重；
+方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）以意义的方式来渲染网页；
+便于团队开发和维护，语义化更具可读性，是下一步吧网页的重要动向，遵循W3C标准的团队都遵循这个标准，可以减少差异化。
+首先是关于语义（Semantics）和默认样式的区别，默认样式是浏览器设定的一些常用tag的表现形式，语义化的主要目的就是
+让大家直观的认识标签(markup)和属性(attribute)的用途和作用，很明显Hx系列看起来很像标题，因为拥有粗体和较大的字号。
+<strong>,<em>用来区别于其他文字，起到了强调的作用。
+
+
+6.什么是HTML5：离线存储
+
+什么是离线网络应用程序?乍一看，从以下几个方面来说就像一个矛盾。网页是需下载并呈现的。下载意味着网络连接。你怎能
+在离线的时候下载?当然，你不能。但你可以在你在线的时候下载。这就是HTML5离线应用程序怎样工作的。
+最简单来说，一个离线网络应用程序就是一个URL的列表——HTML，CSS，JavaScript，图片，或者其他类型的资源。离线网络
+应用程序的注意指向一个叫做名单文件并用于定位网络服务器上任何文本文件的列表。用于执行HTML5离线以用程序的网络浏览
+器将从名单文件中读取URL列表，下载这些资源，将他们在本地缓存，并自动在这些本地副本改变时保持他们更新。当你尝试在
+没有网络连接时访问网络应用程序，你的网络浏览器将自动切换并使用本地代替。
+从现在开始，大多数的工作要靠你网络开发者了。DOM里有一个标记会告诉你在线还是离线。当你的离线状态改变时将会有事件
+触发(一时离线，下一时在线，或者反之亦然)。但这非常符合情况。如果你的应用程序创建了数据或者存储状态，你该决定当
+离线时在本地存储数据，且当你重新在线时与远程服务器同步。更新程序在被创建时连接到存储段。换句话说，HTML5可以使你
+的网络应用程序离线使用。当你处于那种情况该怎么做由你决定。
+
+
+
+7.Label的作用是什么？是怎么用的？
+
+<label> 标签为 input 元素定义标注（标记）。
+label 元素不会向用户呈现任何特殊效果。不过，它为鼠标用户改进了可用性。如果您在 label 元素内点击文本，就会触发此
+控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。
+<label> 标签的 for 属性应当与相关元素的 id 属性相同。
+
+
+8.Form表单有那些标签，应该怎么使用
+
+<form> 标签用于为用户输入创建 HTML 表单。
+表单能够包含 input 元素，比如文本字段、复选框、单选框、提交按钮等等。
+表单还可以包含 menus、textarea、fieldset、legend 和 label 元素。
+表单用于向服务器传输数据。
+
+
+
+9.Table有那些标签，应该怎么使用
+
+简单的 HTML 表格由 table 元素以及一个或多个 tr、th 或 td 元素组成。
+tr 元素定义表格行，th 元素定义表头，td 元素定义表格单元。
+更复杂的 HTML 表格也可能包括 caption、col、colgroup、thead、tfoot 以及 tbody 元素。
+
+
+
+10介绍一下CSS的盒子模型？（两种）
+
+CSS中， Box Model叫盒子模型（或框模型），Box Model规定了元素框处理元素内容（element content）、
+内边距（padding）、边框（border） 和 外边距（margin） 的方式。在HTML文档中，每个元素（element）
+都有盒子模型，所以说在Web世界里（特别是页面布局），Box Model无处不在。 说明：上图中，由内而外
+依次是元素内容（content）、内边矩（padding-top、padding-right、padding- bottom、padding-left）、
+边框（border-top、border-right、border-bottom、border- left）和外边距（marging-top、margin-right、
+margin-bottom、margin-left）。
+内边距、边框和外边距可以应用于一个元素的所有边，也可以应用于单独的边。而且，外边距可以是负值，
+而且在很多情况下都要使用负值的外边距。
+第二种盒子模型：元素框的最内部分是实际的内容（element）；直接包围内容的是内边距（padding），内边
+距呈现了元 素的背景（background）；内边距的边缘是边框（border）；边框以外是外边距（margin），外边
+距默认是透明的，因此不会遮挡其后的任 何元素（其实元素的margin就是其所在父元素的padding）。元素的
+背景应用于由内容和内边距、边框组成的区域。
+　　2.内边距、边框和外边距都是可选的，默认值是零。但是，许多元素将由用户代理样式表设置外边距和内
+边距。可以通过将元素的 margin 和 padding 设置为零来覆盖这些浏览器样式。这可以分别进行，也可以使用
+通用选择器（*）对所有元素进行设置：
+
+/*设置所有元素的外边距和内边矩为0*/* {
+  margin: 0;
+  padding: 0;
+}
+　3. 在 CSS 中，width 和 height 指的是内容区域（element）的宽度和高度。增加内边距、边框和外边距
+不会影响内容区域的尺寸，但是会增加元素框的总尺寸。假设框的每个边上有 10 个像素的外边距和 5 个像素
+的内边距。如果希望这个元素框达到 100 个像素，就需要将内容的宽度设置为 70 像素，以下是CSS代码：
+#box {
+  width: 70px;
+  margin: 10px;
+  padding: 5px;
+}
+
+
+11. CSS 选择符有哪些？哪些属性可以继承？优先级算法如何计算？ CSS3新增伪类有那些？
+
+CSS 选择符
+1、通配选择符（*），表示页面内所有元素的样式。
+*
+{
+ font-family:Verdana, Geneva, sans-serif;
+ font-size:12px;
+}
+2、类型选择符。是指以网页中已有的标签类型作为名称的选择符，例如body、div、p、span等。
+div
+{
+ font-family:Verdana, Geneva, sans-serif;
+ font-size:12px;
+}
+所有的页面元素都可以作为选择符。
+3、群组选择符，如果要对一组对象同时进行相同的样式指派，只需要使用“,”逗号，对选择符
+进行分割即可。这种方法的优点是对于同样的样式只需书写一次就可以了，减少代码量，改善了CSS代码结构。
+a:link,a:visited
+{
+ color:#000;
+}
+4、包含选择符对某对象中的子对象进行样式指派。
+#header
+{
+ width:300px;
+}
+#header top
+{
+ width:100px;
+}
+"header" id下的"top" class。
+5、id选择符
+#header
+{
+ width:300px;
+}
+前边是“#”号，id选择符具有唯一性，在页面中不能重复使用。 常见的是header content footer。
+6、class选择符，比较常用了，可以在页面中重复使用。
+.title
+{
+ width:300px;
+}
+此外还有这样的写法
+*htmll IE6专用hack
+*+htmll IE7专用hack
+
+
+可继承的有：
+Class 可继承
+伪类A标签可以继承
+列表 UL LI DL DD DT 可继承
+
+优先级就近原则，样式定义最近者为准
+载入样式以最后载入的定位为准
+优先级为
+!important > [ id > class > tag ]  
+Important 比 内联优先级高
+
+
+CSS3新增伪类有
+:first-of-type p:first-of-type 选择属于其父元素的首个 <p> 元素的每个 <p> 元素。 
+:last-of-type p:last-of-type 选择属于其父元素的最后 <p> 元素的每个 <p> 元素。
+:only-of-type p:only-of-type 选择属于其父元素唯一的 <p> 元素的每个 <p> 元素。
+:only-child p:only-child 选择属于其父元素的唯一子元素的每个 <p> 元素。
+:nth-child(n) p:nth-child(2) 选择属于其父元素的第二个子元素的每个 <p> 元素。 
+:nth-last-child(n) p:nth-last-child(2) 同上，从最后一个子元素开始计数。
+:nth-of-type(n) p:nth-of-type(2) 选择属于其父元素第二个 <p> 元素的每个 <p> 元素。 
+:nth-last-of-type(n) p:nth-last-of-type(2) 同上，但是从最后一个子元素开始计数。 
+:last-child p:last-child 选择属于其父元素最后一个子元素每个 <p> 元素。 
+:root :root 选择文档的根元素。 
+:empty p:empty 选择没有子元素的每个 <p> 元素（包括文本节点）。 
+:target #news:target 选择当前活动的 #news 元素。
+:enabled input:enabled 选择每个启用的 <input> 元素。 
+:disabled input:disabled 选择每个禁用的 <input> 元素 
+:checked input:checked 选择每个被选中的 <input> 元素。 
+:not(selector) :not(p) 选择非 <p> 元素的每个元素。
+::selection ::selection 选择被用户选取的元素部分。
+
+
+12.如何居中div？如何居中一个浮动元素？
+
+CSS 如何使DIV层水平居中
+今天用CSS碰到个很棘手的问题,DIV本身没有定义自己居中的属性,
+网上很多的方法都是介绍用上级的text-align: center然后嵌套一层DIV来解决问题.
+可是事实上这样的方法科学吗?
+经过网络搜索和亲自实验得出以下结论:
+正确的也是对页面构造没有影响的设置如下:
+对需要水平居中的DIV层添加以下属性:
+margin-left: auto;
+margin-right: auto;
+经过这么一番设置问题似乎解决了,在FF中已经居中了,可是在IE中看竟然还是没有居中!
+郁闷了一下午,就是找不出问题所在,还特地比较了网上的文章竟然一模一样.
+问题到底出在哪里呢?
+感谢网友乐天无用帮忙找出了这个邪门问题的原因.
+原来是L-Blog默认没有在HTML前加上DTD,于是IE就以HTML而不是XHTML来解释文档.
+问题并不在CSS而在XHTML网页本身.
+需要加上这样的代码才能使得上述设置有效果:
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+如果您希望更为严格的XHTML 1.0 Strict或者XHTML 1.1请查阅相关文档.
+以上测试均基于Windows XP SP2版IE6和FireFox 1.0最终版.
+如何使DIV居中
+主要的样式定义如下：
+body {TEXT-ALIGN: center;}
+#center { MARGIN-RIGHT: auto; MARGIN-LEFT: auto; }
+
+说明：
+首先在父级元素定义TEXT-ALIGN: center;这个的意思就是在父级元素内的内容居中；对于IE这样设定就已经可以了。但在mozilla中不能居中。
+解决办法就是在子元素定义时候设定时再加上“MARGIN-RIGHT: auto;MARGIN-LEFT: auto; ”
+需要说明的是，如果你想用这个方法使整个页面要居中，建议不要套在一个DIV里，你可以依次拆出多个div，只
+要在每个拆出的div里定义MARGIN-RIGHT: auto;MARGIN-LEFT: auto; 就可以了。
+如何使图片在DIV 中垂直居中，用背景的方法。举例：
+body{BACKGROUND: url(http://www.w3cn.org/style/001/logo_w3cn_194x79.gif) #FFF no-repeat center;}
+关键就是最后的center,这个参数定义图片的位置。还可以写成“top left”(左上角)或者"bottom right"等，也可以直接写数值"50 30"
+如何使文本在DIV中垂直居中
+如果是文字，便不能用背景方法，可以用增高行距的办法变通实现垂直居中，完整代码如下：
+<html>
+<head>
+<style>
+body{TEXT-ALIGN: center;}
+#center{ MARGIN-RIGHT: auto;
+MARGIN-LEFT: auto;
+height:200px;
+background:#F00;
+width:400px;
+vertical-align:middle;
+line-height:200px;
+}
+</style>
+</head>
+<body >
+<div id="center"><p>test content</p></div>
+</body>
+</html>
+说明：
+vertical-align:middle;表示行内垂直居中，我们将行距增加到和整个DIV一样高line-height:200px;然后插入文字，就垂直居中了。
+CSS+DIV控制页面中元素垂直居中代码 全局和区域垂直居中
+<style type="text/css" media=screen>
+body
+{
+text-align: center;
+}
+#a
+{
+width: 200px;
+height: 400px;
+background: #000;
+}
+#b
+{
+margin-top: expression((a.clientHeight-50)/2);
+width: 50px;
+height: 50px;
+background: #FFF;
+}
+#c
+{
+position: absolute;
+left: expression((body.clientWidth-50)/2);
+top: expression((body.clientHeight-50)/2);
+width: 50px;
+height: 50px;
+background: #F00;
+}
+</style>
+<div id="a">
+<div id="b"></div>
+</div>
+<div id="c"></div>
+另一方法:
+<div style="background:blue;
+position:absolute;
+left:expression((body.clientWidth-50)/2);
+top:expression((body.clientHeight-50)/2);
+width:50;
+height:50">
+</div>
+
+如何居中一个浮动元素
+
+设置容器的浮动方式为相对定位
+然后确定容器的宽高 比如宽500 高 300 的层
+然后设置层的外边距
+.Div
+{
+Width:500px ; height:300px;
+Margin: -150px 0 0 -250px;
+position: absolute;
+left:50%;
+top:50%;
+}
+
+
+
+13.列出display的值，说明他们的作用。position的值， relative和absolute定位原点是？
+
+
+none     此元素不会被显示。
+block   此元素将显示为块级元素，此元素前后会带有换行符。 
+inline   默认。此元素会被显示为内联元素，元素前后没有换行符。
+inline-block    行内块元素。（CSS2.1 新增的值）
+list-item      此元素会作为列表显示。
+run-in   此元素会根据上下文作为块级元素或内联元素显示。
+compact   CSS 中有值 compact，不过由于缺乏广泛支持，已经从 CSS2.1 中删除。
+marker	CSS 中有值 marker，不过由于缺乏广泛支持，已经从 CSS2.1 中删除。
+table	此元素会作为块级表格来显示（类似 <table>），表格前后带有换行符。
+inline-table	此元素会作为内联表格来显示（类似 <table>），表格前后没有换行符。
+table-row-group	此元素会作为一个或多个行的分组来显示（类似 <tbody>）。
+table-header-group	此元素会作为一个或多个行的分组来显示（类似 <thead>）。
+table-footer-group	此元素会作为一个或多个行的分组来显示（类似 <tfoot>）。
+table-row	此元素会作为一个表格行显示（类似 <tr>）。
+table-column-group	此元素会作为一个或多个列的分组来显示（类似 <colgroup>）。
+table-column	此元素会作为一个单元格列显示（类似 <col>）
+table-cell	此元素会作为一个表格单元格显示（类似 <td> 和 <th>）
+table-caption	此元素会作为一个表格标题显示（类似 <caption>）
+inherit	规定应该从父元素继承 display 属性的值。
+
+
+1，relative（相对定位）的定位原点是以自己本省原来所在位置做为原点的。
+2，absolute（绝对定位）的定位原点是离自己这一级元素最近的一级position
+设置为absolute或者relative的父元素的左上角为原点的，（当然，如果自己的所有父元素
+都没有设置position，那么就以body为定位原点）
+
+
+
+14.CSS3有哪些新特性？
+
+选择器
+RGBA和透明度
+多栏布局
+多背景图
+Word Wrap
+文字阴影
+@font-face属性
+圆角(边框半径)
+边框图片
+盒阴影
+盒子大小
+媒体查询
+语音
+
+
+15.字体的大小有那些单位，在响应式布局应该用那个单位，em字体的继承是怎么样的
+
+字体大小单位：px、pt、em；
+em继承：
+一个em也是一个大小的单位，可以定义font-size的值大小。举个例子，如果我们创建
+一个div包含font-size值为16px的文本，那么1em就代表16px，2em就等于32px，依此类推。
+em在所有浏览器中是可变化的，不需要去为每一个元素设置值，因为CSS具有继承特性，
+也就是“层叠”。
+
+响应式布局应该使用rem设置字体大小。
+
+
+
+
+16.怎么让文字在一行显示不换行
+
+
+用CSS让文字在一行内显示不换行的方法
+
+一般的文字截断(适用于内联与块)：
+
+
+.text-overflow{
+display:block;                     /*内联对象需加*/
+width:31em;
+word-break:keep-all;           /* 不换行 */
+white-space:nowrap;          /* 不换行 */
+overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+
+17.总结一下用盒子模型定位，position定位和float定位各有哪些技巧和注意事项
+
+
+float：
+
+float属性定位的元素位于z-index:0层。它是通过float:left和float:right来控制元素在0层左浮或右浮。float会改变
+正常的文档流排列，影响到周围元素。float元素在文档流中一个挨一个排列。但注意，只是float元素之间一个挨一个排列，
+对于非float的元素，float元素是视而不见的，会越过它们。现在对三个div使用float
+1、2、3三个元素是float的，它们会越过非float元素一个挨一个排列，把非float元素挤到最后了。
+概括来说，float:left时，会把非float元素挤到所有float元素的右边，float:right时是挤到左边。
+
+position：
+
+position属性包括下面四个值：
+static（默认） 
+元素框正常生成。块级元素生成一个矩形框，作为文档流的一部分，行内元素则会创建一个或多个行框，置于其父元素中。
+relative 
+元素框偏移某个距离。元素仍保持其未定位前的框的形状，它原本所占的空间仍保留。
+absolute 
+元素框从文档流完全删除，并相对于其包含块定位。包含块可能是文档中的另一个元素或者是初始包含块。元素原先在
+正常文档流中所占的空间会关闭，就好像元素原来不存在一样。元素定位后生成一个块级框，而不论原来它在正常流中生成何种类型的框。
+fixed
+元素框的表现类似于将 position 设置为 absolute，不过其包含块是视窗本身。
+设置absolute或relative会让z-index的值大于0。不同的是，absolute完全脱离文档流，不再在z-index中保留占位符，
+而relative虽然自己已浮起来，但仍然会保留自己在z-index:0中的位置，因此relative在z-index:0层中的相邻元素不会
+因此受到影响。
+
+1. 静态（static）：
+
+元素顺序显示，在一个文档流中，一个挨着一个，但是不像relative那样可以设置top之类的。静态定位仅仅意味着内容
+遵循正常从上到下的HTML流。
+
+2. 相对(relative)：
+
+一个相对定位的元素相对它在HTML流中的当前位置而放置。移动一个带有相对定位的元素，在该元素本该放置的地方留下
+了一个“洞”。相对定位的主要用处不是移动一个元素，而是给行内在它内部的绝对定位的元素设定一个新的参考点。
+
+position: relative的元素相对于自己本来应该在的位置进行偏移，偏移后的位置可能覆盖别人（是漂浮在上方）。它原来
+的位置也空着，因为它会被加入到文档流中。
+
+3. 绝对(absolute)：
+
+绝对定位让你通过以pixel、em、percentage来指定一个左、右、上或者下的位置来确定一个元素的位置。此外，绝对定位的
+元素被完全与页面流分离，换句话说，网页上的其他东西甚至不知道这个绝对定位的元素的存在。
+
+absolute定位的一般用法：
+如果一个标签有一个绝对的位置，并且它不在任何其他应用了absolute、relative或者fixed定位的标签里面，那么它是相对于
+页面（body元素）进行定位的。
+如果一个标签处在另一个带有absolute、relative或者fixed定位的标签里面，那么它是相对于该元素的边界进行定位的。
+即，position: absolute的元素在static的父元素中是相对页面（不是浏览器窗口）进行偏移，在非static父元素中
+（通常是relative，因为如果父元素是absolute，那父元素还要向上找非static祖先元素）是相对父元素进行偏移。
+4. 固定(fixed)：
+
+一个固定的元素被锁定在屏幕的位置上。fixed是相对浏览器窗口的固定位置定位，如网页中的“回到顶部”按钮。
+
+注意：不要试图给同一个样式既应用float属性又应用任何一种定位，除了静态或者相对定位之外。浮动和绝对或者固定定位
+不可能同时作用在同一个元素上。
+18.有哪几种清除浮动的方法，你觉得哪种最简洁
+
+方法一：添加新的元素 、应用 clear：both
+方法二：父级div定义 overflow: auto
+方法三： 据说是最高大上的方法  :after 方法：（注意：作用于浮动元素的父亲）
